@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [number, setNumber] = useState(0);
+  const incrementHandler = () => {
+    setNumber((prevNumber) => prevNumber + 1);
+  };
+  const decrementHandler = () => {
+    if (number === 0) {
+      return;
+    }
+    setNumber((prevNumber) => prevNumber - 1);
+  };
+  const resetHandler = () => {
+    setNumber(0);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div id="container">
+        <div>
+          <p>{number}</p>
+        </div>
+        <div >
+          <button className="transparent" onClick={incrementHandler}>Increment</button>
+          <button className="transparent" onClick={decrementHandler}>Decrement</button>
+          <button className="transparent" onClick={resetHandler}>Reset Count</button>
+        </div>
+      </div>
+    </>
   );
 }
 
